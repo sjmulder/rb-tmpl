@@ -42,9 +42,14 @@ module RbTmpl
 		end
 
 		def find_file(name)
-			@template_search_paths.
-				product(@template_extensions).
-				map{ |path, extension| File.join(path, name + '.' + extension) }.
+			@template_search_paths.map do |path|
+				file = File.join(path, name)
+				ext_files = @template_extensions.map do |ext|
+					File.join(path, name + '.' + ext)
+				end
+				[file] + ext_files
+			end.
+				flatten.
 				find{ |file| File.exist?(file) }
 		end
 
