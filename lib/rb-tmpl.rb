@@ -23,7 +23,6 @@ module RbTmpl
 			return '' if code.nil?
 			data = HashWrapper.new(data) if data.kind_of?(Hash)
 			bind = data.instance_eval{ binding } unless data.nil?
-			puts code
 			eval(code, bind)
 		end
 
