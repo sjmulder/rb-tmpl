@@ -30,9 +30,10 @@ describe Tmpl do
 	end
 
 	it 'loads templates from disk'
-	it 'does not require extensions'
-	it 'searches template paths and extensions in order'
+	it 'supports extensions for template files'
 	it 'gives added templates precedence over disk templates'
+	it 'gives files without extensions precence over those with'
+	it 'searches template paths and extensions in order'
 	it 'rebuilds replaced templates'
 	it 'takes values from an object'
 	it 'takes values from a hash'
