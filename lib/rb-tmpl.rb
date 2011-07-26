@@ -69,8 +69,6 @@ module RbTmpl
 		end
 
 		def compile(template)
-			puts
-			puts template
 			template = template.
 				gsub(/\\/, '\\\\').
 				gsub(/'/, '\\\\\'').
@@ -97,9 +95,6 @@ module RbTmpl
 				"';#{tag_code};__<<'"
 			end
 			code << "';__"
-			puts template
-			puts code
-			puts
 			code
 		end
 	end
