@@ -20,7 +20,7 @@ module RbTmpl
 		def call(name, data = nil)
 			name = name.to_s
 			code = compiled(name)
-			return "" if code.nil?
+			return '' if code.nil?
 			data = HashWrapper.new(data) if data.kind_of?(Hash)
 			bind = data.instance_eval{ binding } unless data.nil?
 			puts code
@@ -45,7 +45,7 @@ module RbTmpl
 		def find_file(name)
 			@template_search_paths.
 				product(@template_extensions).
-				map{ |path, extension| File.join(path, name + '.' + extension) }
+				map{ |path, extension| File.join(path, name + '.' + extension) }.
 				find{ |file| File.exist?(file) }
 		end
 
