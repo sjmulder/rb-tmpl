@@ -1,3 +1,5 @@
+require 'cgi' 
+
 module RbTmpl
 	class Tmpl
 		attr_reader :template_search_paths
@@ -67,10 +69,38 @@ module RbTmpl
 		end
 
 		def compile(template)
-			str = template.
+			puts
+			puts template
+			template = template.
 				gsub(/\\/, '\\\\').
-				gsub(/'/, '\\\\\'')
-			'\'' + str + '\''
+				gsub(/'/, '\\\\\'').
+				gsub(/\$\{([^\}]*)\}/, '{{= \1}}')
+			code = "__='"
+			code << template.gsub(/\{\{[^\}]*\}\}/) do |full_tag|
+				tag_contents = full_tag[2...-2].strip
+				_, closing_slash, tag, args = tag_contents.match(/^(\/?)([^\s]+)(.*)/).to_a
+				if args
+					args = args.
+						strip.
+						gsub('$index', '__i').
+						gsub('$value', '__val')
+				end
+				is_closing = closing_slash == '/'
+				tag_code = case
+					when is_closing    then 'end'
+					when tag == '='    then "__<<CGI.escapeHTML((#{args}).to_s)"
+					when tag == 'html' then "__<<(#{args}).to_s"
+					when tag == 'if'   then 'if ' + args 
+					when tag == 'else' then 'else'
+					when tag == 'each' then '(' + args + ').each_with_index do|__val,__i|'
+				end
+				"';#{tag_code};__<<'"
+			end
+			code << "';__"
+			puts template
+			puts code
+			puts
+			code
 		end
 	end
 end
