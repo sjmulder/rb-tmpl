@@ -72,10 +72,10 @@ describe Tmpl do
 		tmpl.template_extensions << 'ext1' << 'ext2'
 		FileUtils.mkdir('dir1')
 		FileUtils.mkdir('dir2')
-		File.open('dir1/foo.ext1'){ |f| f.write('1') }
-		File.open('dir1/foo.ext2'){ |f| f.write('2') }
-		File.open('dir2/foo'){ |f| f.write('3') }
-		File.open('dir2/foo.ext1'){ |f| f.write('4') }
+		File.open('dir1/foo.ext1', 'w'){ |f| f.write('1') }
+		File.open('dir1/foo.ext2', 'w'){ |f| f.write('2') }
+		File.open('dir2/foo', 'w'){ |f| f.write('3') }
+		File.open('dir2/foo.ext1', 'w'){ |f| f.write('4') }
 		tmpl.call(:foo).should == '1'
 	end
 
