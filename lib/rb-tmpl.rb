@@ -35,11 +35,11 @@ module RbTmpl
 			end
 
 			def method_missing(method, *arguments, &block)
-				hash[method] || hash[method.to_s]
+				@hash[method] || @hash[method.to_s]
 			end
 
 			def respond_to(method, include_private)
-				super || hash.key?(method) || hash.key?(method.to_s)
+				super || @hash.key?(method) || @hash.key?(method.to_s)
 			end
 		end
 
