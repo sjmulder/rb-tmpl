@@ -169,7 +169,7 @@ describe Tmpl do
 		tmpl.call(:lt_f).should == ''
 		tmpl.call(:lt_t).should == 'y'
 		tmpl.call(:eq_var_t, {:var => 1}).should == 'y'
-		tmpl.call(:eq_var_f, {:var => 1}).should == 'n'
+		tmpl.call(:eq_var_f, {:var => 1}).should == ''
 	end
 
 	it 'supports method calls' do
