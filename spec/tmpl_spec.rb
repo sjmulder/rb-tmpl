@@ -174,8 +174,8 @@ describe Tmpl do
 
 	it 'supports method calls' do
 		tmpl = Tmpl.new
-		tmpl.add(:foo, '?{list.length}')
-		tmpl.call(:foo, {:list => [1, 2]}).call == '2'
+		tmpl.add(:foo, '${list.length}')
+		tmpl.call(:foo, {:list => [1, 2]}).should == '2'
 	end
 
 	it 'substitutes common JavaScript expressions'
