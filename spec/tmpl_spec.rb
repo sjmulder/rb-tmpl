@@ -180,4 +180,7 @@ describe Tmpl do
 
 	it 'substitutes common JavaScript expressions'
 	it 'substitutes common JavaScript methods'
+	it 'caches templates if caching is enabled'
+	it 'does not cache templates if caching is disabled'
+	it 'throws a suitable error when a template is not found'
 end
