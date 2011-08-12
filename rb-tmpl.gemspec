@@ -13,7 +13,6 @@ Gem::Specification.new do |s|
 
 	s.rubyforge_project = 'rb-tmpl'
 
-	s.add_dependency 'rubyzip', '~> 0.9.4'
 	s.add_development_dependency 'bundler', '>= 1.0.0'
 	s.add_development_dependency 'rspec'
 	s.add_development_dependency 'fakefs'
